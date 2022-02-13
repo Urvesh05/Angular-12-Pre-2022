@@ -1,0 +1,19 @@
+<!-- 11.parent to child component data transfer -->
+<!-- <h3>Child component Work</h3> 
+ <h3>{{item}}</h3>
+<h3>{{item1}}</h3> -->
+<!-- 
+<h2> ReUse data in arry </h2>
+<ul>
+    <li>{{item2.name}}</li>
+    <li>{{item2.email}}</li>
+</ul> -->
+
+
+<!--12. child to parent component data transfer -->
+<input type="text" #box4/> <!--child class data input show in parent class html file-->
+<button (click)="updateDataEvent.emit(box4.value)">Update Data</button>
+
+
+
+

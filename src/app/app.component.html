@@ -1,5 +1,257 @@
-<!-- <app-employee></app-employee> -->
+<h1>{{title}}</h1>
 
-<h1>Tooggal Elements Event</h1>
-<button (click)="toggal()">Toggal</button>
-<h2 *ngIf="display">Heding Tage data show nad hide ok</h2>
+<h2>1.Interpolation..........</h2>
+<!-- Interpolation use data in component.ts file  -->
+<h3>{{interpolation}}</h3>
+
+<!-- using funtion -->
+<h3>{{getData()}}</h3>
+
+ <!-- using oprator -->
+<h3>Ans =: {{2+5}}</h3>
+
+<!-- using arry -->
+<!-- <h3>{{arry[0].name}}</h3> -->
+<!-- <h3>{{arry[1].age}}</h3> -->
+<!-- <h3>{{arry[1].add}}</h3> -->
+
+<h3>Using Arry</h3>
+<!-- using arry -->
+<table border="1">  
+  <tr>
+    <td>Name</td>
+    <td>Age</td>
+    <td>Add</td>
+  </tr>
+
+<tr *ngFor="let item of arry">
+
+      <td>{{item.name}}</td>
+      <td>{{item.age}}</td>
+      <td>{{item.add}}</td>  
+</tr>
+</table>
+
+
+<h2>2.two-way binding...........</h2>
+<!-- two-way binding -->
+<input type="text" [(ngModel)]="name">  <!--[()] syntax (also known as banana box syntax)-->
+<h3>{{name}}</h3>  <!--show value-->
+
+
+<h2>3.Event Binding Mouse Event</h2>
+<!--Event Binding-->
+<!-- <button (click)="showData($event)" value="Event Fire">Click Me</button> -->
+<!-- OR -->
+<button on-click="showData($event)" value="Event Fire on Mouse Click!">Click Me</button>
+<p>{{mouseEvent}}</p>
+
+
+<h2>3.Event Binding KayUp Event...........</h2>
+<!-- Using keyup event on the input element. -->
+<input (keyup)="onKeyUp($event)" placeholder="keyup event">
+<p>{{text}}</p>
+
+<h2>keyDown Events</h2>
+<input type="text" #box (keydown)="onKeyDown(box.value)" placeholder="keydown event"> <!--show console-->
+
+
+<h2>Blur Events</h2>
+<input type="text" #box1 (blur)="onKeyDown(box1.value)" placeholder="blur event"> <!--show console-->
+
+
+<h2>Input Events</h2>
+<input type="text" #box2 (input)="onKeyDown(box2.value)" placeholder="input event"> <!--show console-->
+
+<h2>MouseOver Event</h2>
+<h3 (mouseover)="onKeyDown('over')"> MouseOver Effect in Working</h3>
+
+
+<h2>MouseLeave Event</h2>
+<h3 (mouseleave)="onKeyDown('leave')"> MouseLeave Effect in Working</h3>
+
+
+<h2>4.Property Binding..........</h2>
+<!-- property binding -->
+<input type="text" [value]="userName">
+<br><br>
+<h2>Diffrance Between Interpolation and Property Binding</h2>
+<h3>Interpolation</h3><input type="text" name="user-name" value={{userName1}} disabled="{{disabled}}"> <!--boolean value not allow-->
+<br>
+<h3>Property Binding</h3><input type="text" name="user-name" [value]="userName1" [disabled]=disabled >
+
+<h2>5.Style Binding......</h2>
+<h3 [style.color]="color" [style.backgroundColor]="bgColor">{{userData}}</h3>
+
+<button (click)=updateColor()>Update Color</button>
+
+
+<h2>6.Get Input Box Value And Display........ </h2>
+<input type="text" #box3 placeholder="Enter Name"  >
+<button (click)="getValue3(box3.value)" >click</button>
+<p>Input Box value is : {{inputdata}}</p>
+
+
+<h2>7.Directive ........ ngIf, ngSwitch, ngFor</h2>
+<h3> Structural Directive *ngIf </h3>
+<h4 *ngIf="show; then ifBlock else elseBlock">
+<!-- <h3 *ngIf="show==yes; then ifBlock else elseBlock"> -->
+  ngIf Condition Work!
+</h4>
+
+<ng-template #ifBlock>
+  <h3>If Condtion Work !</h3>
+</ng-template>
+
+<ng-template #elseBlock>
+  <h3>Else Condtion Work !</h3>
+</ng-template>
+
+
+<h3> Structural Directive else if or multipale </h3> <!--change color in component.ts file-->
+<ng-template [ngIf]="color1==='red'">
+  <h3 style="color:red">Red Color</h3>
+</ng-template>
+<ng-template [ngIf]="color1==='green'">
+  <h3 style="color:green">Green Color</h3>
+</ng-template>
+<ng-template [ngIf]="color1==='yellow'">
+  <h3 style="color:yellow">Yellow Color</h3>
+</ng-template>
+
+
+<h2>Switch Condition use Multipale condition check</h2>
+  <div [ngSwitch]="color2">
+      <h3 *ngSwitchCase="'red'" style="color:red;">Red Color</h3>
+      <h3 *ngSwitchCase="'pink'" style="color:pink;">Pink Color</h3>
+      <h3 *ngSwitchCase="'yellow'" style="color:yellow;">Pink Color</h3>
+      <h3 *ngSwitchCase="'blue'" style="color:blue;">Pink Color</h3>
+      <h3 *ngSwitchCase="'black'" style="color: black;">Pink Color</h3>
+      <h3 *ngSwitchDefaul>Unknown Color</h3>
+  </div>
+
+<h2> *ngFor Loop Using Array.</h2>
+ <!-- <h3 *ngFor = "let movieName of movies">{{movieName.title}}</h3> -->
+ 
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Director</th>
+                        <th>Cast</th>
+                        <th>Release Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let movie of movies;">
+                        <td>{{movie.title}}</td>
+                        <td>{{movie.director}}</td>
+                        <td>{{movie.cast}}</td>
+                        <td>{{movie.releaseDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+<h2> *ngFor Nasted Loop Using Array.</h2>
+
+            <ul *ngFor="let userdata of userArry">
+                <li>Name: {{userdata.name}}</li>
+                <li>Phone: {{userdata.Phone}}</li>
+                <li>Social Media Account</li>
+                  <ul *ngFor="let social of userdata.socialmedia">
+                    <li>{{social}}</li>
+                  </ul>
+
+            </ul>
+
+<h2> 8.Form ............ </h2> 
+
+<form #userBasic="ngForm" (ngSubmit)="getData5(userBasic.value)">
+
+  <input type="text" name="user" placeholder="Enet name" ngModel>
+  <br><br>
+  <input type="Email" name="email" placeholder="Enet email" ngModel>
+  <br><br>
+  <input type="password" name="password" placeholder="Enet password" ngModel>
+  <br><br>
+  <button>Register</button>
+
+  <h2>Show Data</h2>
+<ul>
+  <li>{{usergetData5.user}}</li>
+  <li>{{usergetData5.email}}</li>
+  <li>{{usergetData5.password}}</li>
+</ul>
+  
+</form>
+<br>
+
+<h2> 9. Toggal Show Hide.......</h2>
+
+<button (click)="Toggal()">Toggal Data</button>
+<h2 *ngIf="displayData">Toggal Data Is Work...</h2>
+<br>
+
+
+
+<h2>10 Todo List ....Button Click to  Data Input and Delete Data.......... </h2>
+
+<input type="text" placeholder="Enter Data" #task>
+<br><br>
+<button (click)="addTask(task.value)">Add Task</button>
+
+<h2>Show Data In List</h2>
+<ul *ngFor="let taksData of list">
+  <li>{{taksData.name}}  <button (click)="removeTask(taksData.id)">Remove</button></li>
+</ul>
+<br><br>
+
+
+<h2>11.Send data parent to Child component...........</h2>
+<!-- item pass in child component -->
+<!-- <app-child [item]="pData"></app-child> 
+<button (click)="upadteChild()"> Update Child Component</button> -->
+
+<!-- pass Data in array-->
+<!-- <ul *ngFor="let user of userDetails"> -->
+
+  <!--use item2 in child component-->
+<!-- <app-child [item2]='user'></app-child> 
+</ul> -->
+
+
+<h2>12.Send data Child To Parent Component..........</h2>
+<!-- test -->
+<!-- <input type="text" #box4/>
+<button (click)="parentData(box4.value)">Update Data</button> -->
+
+<!-- updateDataEvent use in child component -->
+<h3>{{dataParent}}</h3>
+<app-child (updateDataEvent)="parentData($event)"></app-child>
+
+
+<h2>13. Templet Reference Variable.......</h2>
+<input type="text" name="uName" placeholder="User Name" #box5>
+<button (click)="getVal(box5)">Call Function</button>
+
+
+<h2>14..Pipes........</h2>
+<h3>{{ test | uppercase }}</h3>
+<h3>{{ test | lowercase }}</h3>
+<h3>{{ test | lowercase }}</h3>
+<h3>{{ today }}</h3>
+<h3>{{ today | date: 'fullDate' }}</h3>
+<h3>{{usingSlice | slice :3 : 19 | uppercase}}</h3>
+
+ <!-- Advance pips -->
+<h3>{{jsonpipe | json }}</h3>
+<h3>{{2000.3000 | number:'2.2-3' }}</h3>
+<h3>{{2000 | currency:'GBP' }}</h3>
+<h3>{{2000 | currency:'INR' }}</h3>
+<h3>{{2000 | currency:'USD' }}</h3>
+
+<!-- custom Pipes -->
+<h3>{{ 130 | usdInr :100}}</h3> <!--working process in pipes.ts file-->
+
+<!-- 15.Templet Driven Form -->
+<app-form></app-form>

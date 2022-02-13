@@ -3,16 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EmployeeComponent } from './employee/employee.component';
+import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
+
+import { ChildComponent } from './child/child.component';
+import { UsdInrPipe } from './pipes/usd-inr.pipe';
+import { FormComponent } from './form/form.component' //import form in two-way binding
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeComponent
+    
+    ChildComponent,
+         UsdInrPipe,
+         FormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

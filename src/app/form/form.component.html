@@ -1,0 +1,43 @@
+<!-- <p>form works!</p> -->
+
+<h2>15.Templet Driven Form......</h2>
+<form #loginForm="ngForm" (ngSubmit)="userLogin(loginForm.value)">
+
+  <label>First Name</label>
+  <br>
+  <input type="text" required #name="ngModel" name="name" pattern="[a-zA-Z]+$" placeholder="Enter Name" ngModel>
+  <br>
+  <span *ngIf="name.invalid && name.touched" style="color:red;">please Enter Valid Name!</span>
+  <br>
+
+  <label>Password</label><br>
+  <input type="password" #name="ngModel" name="password"  minlength="2" placeholder="Enter Password" required ngModel>
+  <br>
+  <span *ngIf="name.invalid && name.touched" style="color:red;">please Enter Valid Name!</span>
+  <br>
+
+  <button [disabled]="loginForm.invalid">Submit</button>
+
+</form>
+
+
+
+<h2>16.Reactiv Form......</h2>
+<form [formGroup]="loginFormReactive" (ngSubmit)="userLoginReactive()">
+
+    <label>First Name</label>
+    <br>
+    <input type="text"  name="username"  placeholder="Enter Name" formControlName="username">
+    <br>
+    <span *ngIf="username && username.invalid && username.touched" style="color: red;">This Fiels is not Valid</span>
+    <br>
+   
+    <label>Password</label><br>
+    <input type="password"  name="userpassword"  placeholder="Enter Password" formControlName="userpassword" >
+    <br>
+    <span *ngIf="userpassword && userpassword.invalid && userpassword.touched" style="color: red;">This Fiels is not Valid</span>
+    <br>
+   
+    <button [disabled]="loginFormReactive.invalid">Submit</button>
+  
+  </form>
